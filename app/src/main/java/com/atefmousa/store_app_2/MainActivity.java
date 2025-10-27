@@ -6,13 +6,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,27 +18,27 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        String [] cgt={"Tvs","Phones"};
+        String[] cgt = {"Tvs", "Phones"};
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,cgt);
-        ListView listview=findViewById(R.id.listView);
-        listview.setAdapter(adapter);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, cgt);
 
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener(
+        ListView listView = findViewById(R.id.listView);
+        listView.setAdapter(adapter);
 
-        ) {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                if(position==0){
-                    Intent intent = new Intent(MainActivity.this,TvProductsActivity.class);
+                if (position == 0) {
+                    Intent intent = new Intent(MainActivity.this, TvProductsActivity.class);
                     startActivity(intent);
-                }else{
-                    Toast.makeText(MainActivity.this, "Phones", Toast.LENGTH_SHORT).show();
-                }
 
+                } else if (position == 1) {
+                    Intent intent = new Intent(MainActivity.this, PhoneProductsActivity.class);
+                    startActivity(intent);
+                }
             }
         });
-
     }
 }
